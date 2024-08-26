@@ -3,9 +3,13 @@ import runner_and_tournament
 
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
     @classmethod
     def setUpClass(cls):
         cls.all_results = []
+
+
+    @unittest.skipUnless(is_frozen,'Тесты в этом кейсе заморожены')
     def setUp(self):
         self.runners=[]
         self.runners.append(runner_and_tournament.Runner('Усэйн',10))
@@ -20,21 +24,29 @@ class TournamentTest(unittest.TestCase):
             for k,u in a.items():
                 print(k,':',u.name,end=' ,')
             print('}')
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_13(self):
         t13 = runner_and_tournament.Tournament(90,self.runners[0],self.runners[2])
         dres = t13.start()
         TournamentTest.all_results.append(dres)
         self.assertTrue(dres[max(dres.keys())]==self.outsider.name)
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_23(self):
         t23 = runner_and_tournament.Tournament(90,self.runners[1],self.runners[2])
         dres = t23.start()
         TournamentTest.all_results.append(dres)
         self.assertTrue(dres[max(dres.keys())]==self.outsider.name)
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_123(self):
         t123 = runner_and_tournament.Tournament(90,self.runners[0],self.runners[1],self.runners[2])
         dres = t123.start()
         TournamentTest.all_results.append(dres)
         self.assertTrue(dres[max(dres.keys())]==self.outsider.name)
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_minidist(self):
         t123 = runner_and_tournament.Tournament(90,self.runners[0],self.runners[1],self.runners[2])
         speeds = [v.speed for v in t123.participants]

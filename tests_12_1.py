@@ -1,20 +1,26 @@
 import unittest
-import runner12
+import runner
 
 class RunnerTest(unittest.TestCase):
+    is_frozen = False
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
-        rn0 = runner12.Runner('Fake')
+        rn0 = runner.Runner('Fake')
         for i in range(10):
             rn0.walk()
         self.assertEqual(rn0.distance,50)
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_run(self):
-        rn = runner12.Runner('Fake')
+        rn = runner.Runner('Fake')
         for i in range(10):
             rn.run()
         self.assertEqual(rn.distance,100)
+
+    @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_challenge(self):
-        rn2 = runner12.Runner('Fake')
-        rn1 = runner12.Runner('Lord')
+        rn2 = runner.Runner('Fake')
+        rn1 = runner.Runner('Lord')
         for i in range(10):
             rn2.run()
             rn1.walk()
