@@ -1,10 +1,10 @@
 import rt_with_exceptions as runner
 import unittest
-import runner
+
 import logging
 
 class RunnerTest(unittest.TestCase):
-    is_frozen = False
+    is_frozen = True
     @unittest.skipUnless(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
         try:
@@ -36,7 +36,5 @@ class RunnerTest(unittest.TestCase):
             rn2.run()
             rn1.walk()
         self.assertNotEqual(rn2.distance,rn1.distance)
-if __name__=='__main__':
-    logging.basicConfig(filemode='w',filename='runner_tests.log',level=logging.INFO,encoding='UTF-8',
-                        format='%(asctime)s | %(levelname)s | %(message)s')
-    unittest.main()
+logging.basicConfig(filename='runner_tests.log',filemode='w',level=logging.INFO,encoding='UTF-8',format='%(asctime)s | %(levelname)s | %(message)s')
+    #unittest.main()
